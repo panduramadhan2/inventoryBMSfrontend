@@ -25,19 +25,6 @@ const InventoryList = () => {
 
   const [user, setUser] = useState(null); // Track the authenticated user
 
-  // useEffect(() => {
-  //   getInventory();
-  // }, []);
-
-  // const firebaseConfig = {
-  //   apiKey: "AIzaSyCl3jNIWOxtdirgrtbmFL00W4-56cMmksc",
-  //   authDomain: "inventorybms.firebaseapp.com",
-  //   projectId: "inventorybms",
-  //   storageBucket: "inventorybms.appspot.com",
-  //   messagingSenderId: "810547387289",
-  //   appId: "1:810547387289:web:45c3a7ff14ecc807a19108",
-  // };
-
   useEffect(() => {
     // Initialize Firebase (Make sure to replace 'firebaseConfig' with your actual config object)
     if (!firebase.apps.length) {

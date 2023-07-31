@@ -213,7 +213,7 @@ const InventoryList = () => {
         Logout
       </button>
       {!isUser && (
-        <Link to="add" className="button is-success" style={{ marginTop: "2%" }} disabled>
+        <Link to="add" className="button is-success" style={{ marginTop: "2%" }}>
           Add New
         </Link>
       )}
@@ -221,11 +221,7 @@ const InventoryList = () => {
       <div style={{ border: "1px solid black", borderRadius: "10px", paddingLeft: "10px", width: "300px", marginTop: "20px", boxShadow: "0 2px 4px rgba(1, 0, 0, 0.4)" }}>
         <InputGroup className="my-3" style={{ flexDirection: "row" }}>
           {/* Search icon inside the InputGroup */}
-
-          {/* <Form.Control style={{marginRight: "-1rem"}} */}
-          <InputGroup.Text
-          // style={{  right: "-12rem", pointerEvents: "none" }}
-          >
+          <InputGroup.Text>
             <i className="bi bi-search"></i>
           </InputGroup.Text>
           <Form.Control
@@ -237,7 +233,7 @@ const InventoryList = () => {
       </div>
 
       {!isUser && (
-        <button onClick={handleExportData} className="button is-primary" style={{ marginTop: "2%" }} disabled>
+        <button onClick={handleExportData} className="button is-primary" style={{ marginTop: "2%" }}>
           Export Data
         </button>
       )}

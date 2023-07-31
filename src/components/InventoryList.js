@@ -264,7 +264,6 @@ const InventoryList = () => {
           overflowX: "auto",
           width: "100%",
           margin: "0",
-          maxHeight: "calc(100vh - 200px)",
           overflowY: "auto",
         }}
       >

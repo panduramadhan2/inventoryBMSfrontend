@@ -26,6 +26,8 @@ const InventoryList = () => {
 
   const [user, setUser] = useState(null); // Track the authenticated user
   const [isUser, setIsUser] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     // Initialize Firebase (Make sure to replace 'firebaseConfig' with your actual config object)
@@ -45,6 +47,7 @@ const InventoryList = () => {
         // User is signed out
         setUser(null);
       }
+      setLoading(false); // Set loading to false once authentication is checked
     });
 
     return () => unsubscribe(); // Clean up the listener when the component unmounts
@@ -76,7 +79,9 @@ const InventoryList = () => {
       setInventories(response.data);
       console.log(response.data);
     } catch (error) {
-      console.error(error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -206,6 +211,14 @@ const InventoryList = () => {
       console.error(error);
     }
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   if (!user) {
     return <Login />;

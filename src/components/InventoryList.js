@@ -27,8 +27,6 @@ const InventoryList = () => {
   const [user, setUser] = useState(null); // Track the authenticated user
 <<<<<<< HEAD
   const [isUser, setIsUser] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 =======
 >>>>>>> parent of ab4ff20... fixing role dengan useState
 

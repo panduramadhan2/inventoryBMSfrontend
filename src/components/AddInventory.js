@@ -188,6 +188,7 @@ const AddInventory = () => {
       existsInDatabase = await checkIfNoAssetExistsInDatabase(generatedNoAsset);
     }
 
+    // Update the state with the generated value
     setNoAsset(generatedNoAsset);
   };
 

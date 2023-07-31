@@ -41,9 +41,6 @@ const InventoryList = () => {
         // Check if the user has the 'admin' role
         const isUser = user && user.customClaims && user.customClaims.role === 'user';
         setIsUser(isUser);
-        // Now, you can use the 'isAdmin' variable to determine whether the user is an admin or not.
-
-        getInventory();
       } else {
         // User is signed out
         setUser(null);
@@ -52,6 +49,13 @@ const InventoryList = () => {
 
     return () => unsubscribe(); // Clean up the listener when the component unmounts
   }, []);
+
+  useEffect(() => {
+    // Fetch inventory data if the user is authenticated
+    if (user) {
+      getInventory();
+    }
+  }, [user]);
 
   const handleLogout = () => {
     firebase

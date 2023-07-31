@@ -189,7 +189,8 @@ const InventoryList = () => {
       // Create a link and click it to trigger the download
       const downloadLink = document.createElement("a");
       downloadLink.href = URL.createObjectURL(blob);
-      downloadLink.download = "ISC-Data inventaris laptop & pheriperal site jogja.xlsx";
+      downloadLink.download =
+        "ISC-Data inventaris laptop & pheriperal site jogja.xlsx";
       downloadLink.click();
     } catch (error) {
       console.error(error);
@@ -201,7 +202,16 @@ const InventoryList = () => {
   }
 
   return (
-    <div className="container">
+    <div
+      className="container"
+      style={{
+        margin: "0",
+        padding: "0",
+        width: "100vw",
+        height: "100vh",
+        overflow: "hidden",
+      }}
+    >
       <button
         onClick={handleLogout}
         className="button is-danger"
@@ -248,7 +258,16 @@ const InventoryList = () => {
         Export Data
       </button>
 
-      <div className="table-container" style={{ overflowX: "auto" }}>
+      <div
+        className="table-container"
+        style={{
+          overflowX: "auto",
+          width: "100%",
+          margin: "0",
+          maxHeight: "calc(100vh - 200px)",
+          overflowY: "auto",
+        }}
+      >
         <div
           style={{
             maxWidth: "1000px", // Initial maximum width for larger screens
@@ -261,7 +280,7 @@ const InventoryList = () => {
           <table
             className="table is-striped is-narrow mt-2"
             // style={{ tableLayout: "auto" }}
-            style={{ tableLayout: "auto", fontSize: "0.8em" }}
+            style={{ tableLayout: "auto", fontSize: "0.8em", width: "100%" }}
           >
             <thead>
               <tr>

@@ -11,6 +11,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 // import { saveAs } from "file-saver";
 import ExcelJS from "exceljs";
+import Swal from "sweetalert2"; // Import SweetAlert library
 
 import Login from "./Login/Login";
 import firebase from "firebase/compat/app";
@@ -69,13 +70,41 @@ const InventoryList = () => {
     }
   }
 
+  // const deleteInventory = async (id) => {
+  //   try {
+  //     await axios.delete(`${API_BASE_URL}${id}`);
+  //     // setInventories();
+  //     setInventories((prevInventories) =>
+  //       prevInventories.filter((item) => item._id !== id)
+  //     );
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   const deleteInventory = async (id) => {
     try {
-      await axios.delete(`${API_BASE_URL}${id}`);
-      // setInventories();
-      setInventories((prevInventories) =>
-        prevInventories.filter((item) => item._id !== id)
-      );
+      // Show a SweetAlert confirmation dialog
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      });
+
+      if (result.isConfirmed) {
+        // User confirmed the delete, proceed with the deletion
+        await axios.delete(`${API_BASE_URL}${id}`);
+        // setInventories();
+        setInventories((prevInventories) =>
+          prevInventories.filter((item) => item._id !== id)
+        );
+
+        // Show a success message
+        Swal.fire("Deleted!", "The inventory has been deleted.", "success");
+      }
     } catch (error) {
       console.log(error);
     }

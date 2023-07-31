@@ -133,40 +133,6 @@ const AddInventory = () => {
     return randomString;
   };
 
-  // const backendURL = "https://inventorybms-api.onrender.com/inventories/";
-
-  // Step 3: Function to check if the generated number exists in the database
-  const checkIfNoAssetExistsInDatabase = async (generatedNoAsset) => {
-    try {
-      const response = await axios.get(
-        `${API_BASE_URL}?noAsset=${generatedNoAsset}`
-      );
-      // If the response contains any data, it means the number exists in the database
-      return response.data.length > 0;
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
-  };
-
-  // const handleGenerateNoAsset = async () => {
-  //   console.log("Generating new No.Asset...");
-  //   let generatedNoAsset = generateRandomString(20);
-
-  //   // Check if the generatedNoAsset already exists in the database
-  //   let existsInDatabase = await checkIfNoAssetExistsInDatabase(
-  //     generatedNoAsset
-  //   );
-
-  //   // Generate a new number until a unique one is found
-  //   while (generatedNoAsset === noAsset || existsInDatabase) {
-  //     generatedNoAsset = generateRandomString(20);
-  //     existsInDatabase = await checkIfNoAssetExistsInDatabase(generatedNoAsset);
-  //   }
-
-  //   setNoAsset(generatedNoAsset);
-  // };
-
   // const handleGenerateNoAsset = () => {
   //   console.log("Generating new No.Asset...");
   //   const generatedNoAsset = generateRandomString();
@@ -177,19 +143,26 @@ const AddInventory = () => {
     console.log("Generating new No.Asset...");
     let generatedNoAsset = generateRandomString();
 
-    // Check if the generatedNoAsset already exists in the database
-    let existsInDatabase = await checkIfNoAssetExistsInDatabase(
-      generatedNoAsset
-    );
+    // Step 1: Get all existing No.Asset values from the database
+    try {
+      const response = await axios.get(`${API_BASE_URL}`);
+      const existingNoAssets = response.data.map((item) => item.noAsset);
 
-    // Generate a new number until a unique one is found
-    while (existsInDatabase) {
-      generatedNoAsset = generateRandomString();
-      existsInDatabase = await checkIfNoAssetExistsInDatabase(generatedNoAsset);
+      // Step 2: Check if the generatedNoAsset already exists in the database
+      const existsInDatabase = existingNoAssets.includes(generatedNoAsset);
+
+      // Step 3: Generate a new number until a unique one is found
+      while (existsInDatabase) {
+        console.log("Number already exists, generating a new one...");
+        generatedNoAsset = generateRandomString();
+        existsInDatabase = existingNoAssets.includes(generatedNoAsset);
+      }
+
+      // Step 4: Update the state with the generated value
+      setNoAsset(generatedNoAsset);
+    } catch (error) {
+      console.log(error);
     }
-
-    // Update the state with the generated value
-    setNoAsset(generatedNoAsset);
   };
 
   return (

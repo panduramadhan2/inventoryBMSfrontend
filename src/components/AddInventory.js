@@ -166,9 +166,28 @@ const AddInventory = () => {
 
   //   setNoAsset(generatedNoAsset);
   // };
-  const handleGenerateNoAsset = () => {
+
+  // const handleGenerateNoAsset = () => {
+  //   console.log("Generating new No.Asset...");
+  //   const generatedNoAsset = generateRandomString();
+  //   setNoAsset(generatedNoAsset);
+  // };
+
+  const handleGenerateNoAsset = async () => {
     console.log("Generating new No.Asset...");
-    const generatedNoAsset = generateRandomString();
+    let generatedNoAsset = generateRandomString();
+
+    // Check if the generatedNoAsset already exists in the database
+    let existsInDatabase = await checkIfNoAssetExistsInDatabase(
+      generatedNoAsset
+    );
+
+    // Generate a new number until a unique one is found
+    while (existsInDatabase) {
+      generatedNoAsset = generateRandomString();
+      existsInDatabase = await checkIfNoAssetExistsInDatabase(generatedNoAsset);
+    }
+
     setNoAsset(generatedNoAsset);
   };
 

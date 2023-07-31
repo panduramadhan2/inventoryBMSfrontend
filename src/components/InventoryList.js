@@ -189,7 +189,8 @@ const InventoryList = () => {
       // Create a link and click it to trigger the download
       const downloadLink = document.createElement("a");
       downloadLink.href = URL.createObjectURL(blob);
-      downloadLink.download = "ISC-Data inventaris laptop & pheriperal site jogja.xlsx";
+      downloadLink.download =
+        "ISC-Data inventaris laptop & pheriperal site jogja.xlsx";
       downloadLink.click();
     } catch (error) {
       console.error(error);
@@ -201,7 +202,16 @@ const InventoryList = () => {
   }
 
   return (
-    <div className="container">
+    <div
+      className="container"
+      style={{
+        margin: "0",
+        padding: "0",
+        width: "100vw",
+        height: "100vh",
+        overflow: "hidden",
+      }}
+    >
       <button
         onClick={handleLogout}
         className="button is-danger"

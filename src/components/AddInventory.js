@@ -5,6 +5,8 @@ import API_BASE_URL from "../development/config";
 import Swal from "sweetalert2"; // Import SweetAlert library
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRandom } from "@fortawesome/free-solid-svg-icons";
+import { faIconName } from '@fortawesome/free-solid-svg-icons';
+
 
 const AddInventory = () => {
   // const [name, setName] = useState("");

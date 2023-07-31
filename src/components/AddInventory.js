@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import API_BASE_URL from "../development/config";
 import Swal from "sweetalert2"; // Import SweetAlert library
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRandom } from "@fortawesome/free-solid-svg-icons";
-import { faIconName } from '@fortawesome/free-solid-svg-icons';
-
+import { faIconName } from "@fortawesome/free-solid-svg-icons";
 
 const AddInventory = () => {
   // const [name, setName] = useState("");
   // const [email, setEmail] = useState("");
   // const [gender, setGender] = useState("Male");
+  // const [inventories, setInventories] = useState([]);
   const [noAsset, setNoAsset] = useState("");
   const [merk, setMerk] = useState("");
   const [type, setType] = useState("");
@@ -50,6 +50,20 @@ const AddInventory = () => {
   //     console.log(error);
   //   }
   // };
+  // useEffect(() => {
+  //   getInventory()
+  // }, []);
+
+  // async function getInventory() {
+  //   try {
+  //     const response = await axios.get(`${API_BASE_URL}`);
+  //     setInventories(response.data);
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
+
   const saveInventory = async (e) => {
     e.preventDefault();
     try {

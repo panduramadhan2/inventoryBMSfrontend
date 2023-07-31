@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import API_BASE_URL from "../development/config";
+import Swal from "sweetalert2"; // Import SweetAlert library
 
 const AddInventory = () => {
   // const [name, setName] = useState("");
@@ -21,13 +22,34 @@ const AddInventory = () => {
   const navigate = useNavigate();
 
   // const saveUser = async (e) => {
+  // const saveInventory = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     await axios.post(`${API_BASE_URL}`, {
+  //       // name,
+  //       // email,
+  //       // gender,
+  //       noAsset,
+  //       merk,
+  //       type,
+  //       serialNumber,
+  //       pengguna,
+  //       lokasiTerbaru,
+  //       kondisi,
+  //       mouse,
+  //       mousepad,
+  //       headset,
+  //       keterangan,
+  //     });
+  //     navigate("/");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   const saveInventory = async (e) => {
     e.preventDefault();
     try {
       await axios.post(`${API_BASE_URL}`, {
-        // name,
-        // email,
-        // gender,
         noAsset,
         merk,
         type,
@@ -40,7 +62,17 @@ const AddInventory = () => {
         headset,
         keterangan,
       });
-      navigate("/");
+
+      // Show a success message using SweetAlert
+      Swal.fire({
+        icon: "success",
+        title: "Data Added!",
+        text: "The inventory data has been added successfully.",
+        confirmButtonText: "OK",
+      }).then(() => {
+        // After clicking "OK", navigate back to the home page
+        navigate("/");
+      });
     } catch (error) {
       console.log(error);
     }

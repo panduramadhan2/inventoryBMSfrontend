@@ -189,7 +189,7 @@ const InventoryList = () => {
       // Create a link and click it to trigger the download
       const downloadLink = document.createElement("a");
       downloadLink.href = URL.createObjectURL(blob);
-      downloadLink.download = "inventory_data.xlsx";
+      downloadLink.download = "ISC-Data inventaris laptop & pheriperal site jogja.xlsx";
       downloadLink.click();
     } catch (error) {
       console.error(error);

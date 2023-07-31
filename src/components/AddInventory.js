@@ -136,18 +136,44 @@ const AddInventory = () => {
   // const backendURL = "https://inventorybms-api.onrender.com/inventories/";
 
   // Step 3: Function to check if the generated number exists in the database
-  const checkIfNoAssetExistsInDatabase = async (generatedNoAsset) => {
-    try {
-      const response = await axios.get(
-        `${API_BASE_URL}?noAsset=${generatedNoAsset}`
+
+  // const checkIfNoAssetExistsInDatabase = async (generatedNoAsset) => {
+  //   try {
+  //     const response = await axios.get(
+  //       `${API_BASE_URL}?noAsset=${generatedNoAsset}`
+  //     );
+  //     // If the response contains any data, it means the number exists in the database
+  //     return response.data.length > 0;
+  //   } catch (error) {
+  //     console.log(error);
+  //     return false;
+  //   }
+  // };
+
+  useEffect(() => {
+    // Function to generate and set the initial unique 'noAsset' value
+    const generateUniqueNoAsset = async () => {
+      console.log("Generating new No.Asset...");
+      let generatedNoAsset = generateRandomString(20);
+
+      // Check if the generatedNoAsset already exists in the database
+      let existsInDatabase = await checkIfNoAssetExistsInDatabase(
+        generatedNoAsset
       );
-      // If the response contains any data, it means the number exists in the database
-      return response.data.length > 0;
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
-  };
+
+      // Generate a new number until a unique one is found
+      while (generatedNoAsset === noAsset || existsInDatabase) {
+        generatedNoAsset = generateRandomString(20);
+        existsInDatabase = await checkIfNoAssetExistsInDatabase(
+          generatedNoAsset
+        );
+      }
+
+      setNoAsset(generatedNoAsset);
+    };
+
+    generateUniqueNoAsset(); // Call the function when the component mounts
+  }, []);
 
   // const handleGenerateNoAsset = async () => {
   //   console.log("Generating new No.Asset...");

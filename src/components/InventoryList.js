@@ -280,8 +280,29 @@ const InventoryList = () => {
           <table
             className="table is-striped is-narrow mt-2"
             // style={{ tableLayout: "auto" }}
-            style={{ tableLayout: "auto", fontSize: "0.8em", width: "70%" }}
+            style={{
+              tableLayout: "auto",
+              fontSize: "0.8em",
+              width: "100%",
+              overflowX: "hidden", // Hide horizontal overflow to avoid showing unnecessary scroll bar
+            }}
           >
+            <colgroup>
+              {/* Set specific column widths to adjust layout */}
+              <col style={{ width: "5%" }} />
+              <col style={{ width: "10%" }} />
+              <col style={{ width: "10%" }} />
+              <col style={{ width: "10%" }} />
+              <col style={{ width: "10%" }} />
+              <col style={{ width: "10%" }} />
+              <col style={{ width: "10%" }} />
+              <col style={{ width: "10%" }} />
+              <col style={{ width: "5%" }} />
+              <col style={{ width: "5%" }} />
+              <col style={{ width: "5%" }} />
+              <col style={{ width: "10%" }} />
+              <col style={{ width: "10%" }} />
+            </colgroup>
             <thead>
               <tr>
                 <th>No</th>

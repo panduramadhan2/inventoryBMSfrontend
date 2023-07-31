@@ -280,7 +280,7 @@ const InventoryList = () => {
           <table
             className="table is-striped is-narrow mt-2"
             // style={{ tableLayout: "auto" }}
-            style={{ tableLayout: "auto", fontSize: "0.8em", width: "100%" }}
+            style={{ tableLayout: "auto", fontSize: "0.8em", width: "130%" }}
           >
             <thead>
               <tr>

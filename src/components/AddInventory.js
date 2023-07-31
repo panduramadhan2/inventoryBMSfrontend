@@ -102,14 +102,21 @@ const AddInventory = () => {
     const symbols = "/-";
 
     let randomString = "";
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 6; i++) {
       // Add random uppercase or lowercase letter
       randomString += characters.charAt(
         Math.floor(Math.random() * characters.length)
       );
     }
     randomString += symbols.charAt(Math.floor(Math.random() * symbols.length));
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 10; i++) {
+      // Add random number
+      randomString += numbers.charAt(
+        Math.floor(Math.random() * numbers.length)
+      );
+    }
+    randomString += symbols.charAt(Math.floor(Math.random() * symbols.length));
+    for (let i = 0; i < 12; i++) {
       // Add random number
       randomString += numbers.charAt(
         Math.floor(Math.random() * numbers.length)

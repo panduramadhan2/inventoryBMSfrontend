@@ -25,10 +25,7 @@ const InventoryList = () => {
   const [search, setSearch] = useState("");
 
   const [user, setUser] = useState(null); // Track the authenticated user
-<<<<<<< HEAD
-  const [isUser, setIsUser] = useState(false);
-=======
->>>>>>> parent of ab4ff20... fixing role dengan useState
+  const [isUser, setIsUser] = useState(false); // Uncomment this line
 
   useEffect(() => {
     // Initialize Firebase (Make sure to replace 'firebaseConfig' with your actual config object)
@@ -44,13 +41,9 @@ const InventoryList = () => {
 
         // Check if the user has the 'admin' role
         const isUser = user && user.customClaims && user.customClaims.role === 'user';
-<<<<<<< HEAD
         setIsUser(isUser);
-=======
-        // Now, you can use the 'isAdmin' variable to determine whether the user is an admin or not.
 
         getInventory();
->>>>>>> parent of ab4ff20... fixing role dengan useState
       } else {
         // User is signed out
         setUser(null);

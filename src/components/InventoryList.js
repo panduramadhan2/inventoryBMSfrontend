@@ -23,6 +23,8 @@ import API_BASE_URL from "../development/config";
 const InventoryList = () => {
   const [inventories, setInventories] = useState([]);
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true); // Add this line
+  const [error, setError] = useState(null); // Add this line
 
   const [user, setUser] = useState(null); // Track the authenticated user
   const [isUser, setIsUser] = useState(false); // Uncomment this line
@@ -47,6 +49,7 @@ const InventoryList = () => {
       } else {
         // User is signed out
         setUser(null);
+        setLoading(false); // Set loading to false if the user is not authenticated
       }
       setLoading(false); // Set loading to false once authentication is checked
     });

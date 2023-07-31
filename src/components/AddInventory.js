@@ -129,6 +129,7 @@ const AddInventory = () => {
   };
 
   const handleGenerateNoAsset = async () => {
+    console.log("Generating new No.Asset...");
     let generatedNoAsset = generateRandomString(20);
 
     // Check if the generatedNoAsset already exists in the database

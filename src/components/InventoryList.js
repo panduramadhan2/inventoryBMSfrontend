@@ -212,7 +212,7 @@ const InventoryList = () => {
       <button onClick={handleLogout} className="button is-danger" style={{ float: "right", margin: "2%" }}>
         Logout
       </button>
-      {!isUser && (
+      {user.customClaims.role === 'admin' && (
         <Link to="add" className="button is-success" style={{ marginTop: "2%" }}>
           Add New
         </Link>
@@ -232,7 +232,7 @@ const InventoryList = () => {
         </InputGroup>
       </div>
 
-      {!isUser && (
+      {user.customClaims.role === 'admin' && (
         <button onClick={handleExportData} className="button is-primary" style={{ marginTop: "2%" }}>
           Export Data
         </button>

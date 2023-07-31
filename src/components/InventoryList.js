@@ -264,7 +264,8 @@ const InventoryList = () => {
           overflowX: "auto",
           width: "100%",
           margin: "0",
-          overflowY: "auto",
+          maxHeight: "calc(100vh - 200px)", // Set the maximum height for the table container
+          overflowY: "auto", // Enable vertical scrolling for the table container
         }}
       >
         <div

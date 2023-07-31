@@ -129,7 +129,7 @@ const AddInventory = () => {
   };
 
   const handleGenerateNoAsset = async () => {
-    let generatedNoAsset = generateRandomString();
+    let generatedNoAsset = generateRandomString(20);
 
     // Check if the generatedNoAsset already exists in the database
     let existsInDatabase = await checkIfNoAssetExistsInDatabase(
@@ -138,7 +138,7 @@ const AddInventory = () => {
 
     // Generate a new number until a unique one is found
     while (generatedNoAsset === noAsset || existsInDatabase) {
-      generatedNoAsset = generateRandomString();
+      generatedNoAsset = generateRandomString(20);
       existsInDatabase = await checkIfNoAssetExistsInDatabase(generatedNoAsset);
     }
 

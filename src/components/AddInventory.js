@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import API_BASE_URL from "../development/config";
 import Swal from "sweetalert2"; // Import SweetAlert library
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRandom } from "@fortawesome/free-solid-svg-icons";
 
 const AddInventory = () => {
   // const [name, setName] = useState("");
@@ -78,6 +80,69 @@ const AddInventory = () => {
     }
   };
 
+  const generateRandomString = () => {
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    const numbers = "0123456789";
+    const symbols = "/-";
+
+    let randomString = "";
+    for (let i = 0; i < 3; i++) {
+      // Add random uppercase or lowercase letter
+      randomString += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+    }
+    randomString += symbols.charAt(Math.floor(Math.random() * symbols.length));
+    for (let i = 0; i < 3; i++) {
+      // Add random number
+      randomString += numbers.charAt(
+        Math.floor(Math.random() * numbers.length)
+      );
+    }
+    randomString += symbols.charAt(Math.floor(Math.random() * symbols.length));
+    for (let i = 0; i < 3; i++) {
+      // Add random number
+      randomString += numbers.charAt(
+        Math.floor(Math.random() * numbers.length)
+      );
+    }
+
+    return randomString;
+  };
+
+  // const backendURL = "https://inventorybms-api.onrender.com/inventories/";
+
+  // Step 3: Function to check if the generated number exists in the database
+  const checkIfNoAssetExistsInDatabase = async (generatedNoAsset) => {
+    try {
+      const response = await axios.get(
+        `${API_BASE_URL}?noAsset=${generatedNoAsset}`
+      );
+      // If the response contains any data, it means the number exists in the database
+      return response.data.length > 0;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  };
+
+  const handleGenerateNoAsset = async () => {
+    let generatedNoAsset = generateRandomString();
+
+    // Check if the generatedNoAsset already exists in the database
+    let existsInDatabase = await checkIfNoAssetExistsInDatabase(
+      generatedNoAsset
+    );
+
+    // Generate a new number until a unique one is found
+    while (generatedNoAsset === noAsset || existsInDatabase) {
+      generatedNoAsset = generateRandomString();
+      existsInDatabase = await checkIfNoAssetExistsInDatabase(generatedNoAsset);
+    }
+
+    setNoAsset(generatedNoAsset);
+  };
+
   return (
     <div className="columns">
       <div className="column is-half">
@@ -92,6 +157,15 @@ const AddInventory = () => {
                 onChange={(e) => setNoAsset(e.target.value)}
                 placeholder="No.Asset"
               />
+            </div>
+            <div className="control">
+              <button
+                type="button"
+                className="button"
+                onClick={handleGenerateNoAsset}
+              >
+                <FontAwesomeIcon icon={faRandom} />
+              </button>
             </div>
           </div>
           <div className="field">

@@ -219,6 +219,14 @@ const InventoryList = () => {
     }
   };
 
+  const isAdminBms = () => {
+    return user?.email === "pandu@gmail.com";
+  };
+
+  const isUserBms = () => {
+    return user?.email === "bambang@gmail.com";
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -249,7 +257,8 @@ const InventoryList = () => {
       >
         Logout
       </button>
-      {user && user.customClaims && user.customClaims.role === "admin" && (
+      {/* Show "Add New" button for "pandu@gmail.com" (admin) */}
+      {isAdminBms() && (
         <Link
           to="add"
           className="button is-success"
@@ -282,7 +291,8 @@ const InventoryList = () => {
         </InputGroup>
       </div>
 
-      {user && user.customClaims && user.customClaims.role === "admin" && (
+      {/* Show "Export Data" button for "pandu@gmail.com" (admin) */}
+      {isAdminBms() && (
         <button
           onClick={handleExportData}
           className="button is-primary"
@@ -347,9 +357,8 @@ const InventoryList = () => {
                 <th>Mousepad</th>
                 <th>Headset</th>
                 <th>Keterangan</th>
-                {/* Use 'user.customClaims.role' to determine if the user is an admin or not */}
-                {/* Fix the condition here */}
-                {user?.customClaims?.role !== "user" && <th>Actions</th>}
+                {/* Hide actions for "bambang@gmail.com" (user) */}
+                {!isUserBms() && <th>Actions</th>}
               </tr>
             </thead>
             <tbody>
@@ -393,7 +402,8 @@ const InventoryList = () => {
                     <td>{inventory.mousepad}</td>
                     <td>{inventory.headset}</td>
                     <td>{inventory.keterangan}</td>
-                    {user?.customClaims?.role !== "user" && (
+                    {/* Hide actions for "bambang@gmail.com" (user) */}
+                    {!isUserBms() && (
                       <td>
                         <Link
                           to={`edit/${inventory._id}`}

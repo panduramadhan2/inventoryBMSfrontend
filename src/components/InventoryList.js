@@ -380,19 +380,19 @@ const InventoryList = () => {
                   }
                 })
                 .map((inventory, index) => (
-                  <tr key={inventories._id}>
+                  <tr key={inventory._id}>
                     <td>{index + 1}</td>
-                    <td>{inventories.noAsset}</td>
-                    <td>{inventories.merk}</td>
-                    <td>{inventories.type}</td>
-                    <td>{inventories.serialNumber}</td>
-                    <td>{inventories.pengguna}</td>
-                    <td>{inventories.lokasiTerbaru}</td>
-                    <td>{inventories.kondisi}</td>
-                    <td>{inventories.mouse}</td>
-                    <td>{inventories.mousepad}</td>
-                    <td>{inventories.headset}</td>
-                    <td>{inventories.keterangan}</td>
+                    <td>{inventory.noAsset}</td>
+                    <td>{inventory.merk}</td>
+                    <td>{inventory.type}</td>
+                    <td>{inventory.serialNumber}</td>
+                    <td>{inventory.pengguna}</td>
+                    <td>{inventory.lokasiTerbaru}</td>
+                    <td>{inventory.kondisi}</td>
+                    <td>{inventory.mouse}</td>
+                    <td>{inventory.mousepad}</td>
+                    <td>{inventory.headset}</td>
+                    <td>{inventory.keterangan}</td>
                     {user.customClaims.role !== "user" && (
                       <td>
                         <Link

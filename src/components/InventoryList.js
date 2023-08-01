@@ -349,7 +349,7 @@ const InventoryList = () => {
                 <th>Keterangan</th>
                 {/* Use 'user.customClaims.role' to determine if the user is an admin or not */}
                 {/* Fix the condition here */}
-                {user.customClaims.role !== "user" && <th>Actions</th>}
+                {user?.customClaims?.role !== "user" && <th>Actions</th>}
               </tr>
             </thead>
             <tbody>

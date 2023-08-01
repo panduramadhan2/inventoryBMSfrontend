@@ -348,7 +348,8 @@ const InventoryList = () => {
                 <th>Headset</th>
                 <th>Keterangan</th>
                 {/* Use 'user.customClaims.role' to determine if the user is an admin or not */}
-                {!user.customClaims.role === "user" && <th>Actions</th>}
+                {/* Fix the condition here */}
+                {user.customClaims.role !== "user" && <th>Actions</th>}
               </tr>
             </thead>
             <tbody>
@@ -379,12 +380,20 @@ const InventoryList = () => {
                   }
                 })
                 .map((inventory, index) => (
-                  <tr key={inventory._id}>
+                  <tr key={inventories._id}>
                     <td>{index + 1}</td>
-                    <td>{inventory.noAsset}</td>
-                    {/* ... (existing code) */}
-                    {/* Use 'user.customClaims.role' to determine if the user is an admin or not */}
-                    {!user.customClaims.role === "user" && (
+                    <td>{inventories.noAsset}</td>
+                    <td>{inventories.merk}</td>
+                    <td>{inventories.type}</td>
+                    <td>{inventories.serialNumber}</td>
+                    <td>{inventories.pengguna}</td>
+                    <td>{inventories.lokasiTerbaru}</td>
+                    <td>{inventories.kondisi}</td>
+                    <td>{inventories.mouse}</td>
+                    <td>{inventories.mousepad}</td>
+                    <td>{inventories.headset}</td>
+                    <td>{inventories.keterangan}</td>
+                    {user.customClaims.role !== "user" && (
                       <td>
                         <Link
                           to={`edit/${inventory._id}`}

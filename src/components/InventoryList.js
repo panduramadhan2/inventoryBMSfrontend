@@ -27,10 +27,8 @@ const InventoryList = () => {
   const [error, setError] = useState(null); // Add this line
 
   const [user, setUser] = useState(null); // Track the authenticated user
-<<<<<<< HEAD
+
   const [isUser, setIsUser] = useState(false); // Uncomment this line
-=======
->>>>>>> parent of ab4ff20 (fixing role dengan useState)
 
   useEffect(() => {
     // Initialize Firebase (Make sure to replace 'firebaseConfig' with your actual config object)
@@ -45,12 +43,10 @@ const InventoryList = () => {
         setUser(user);
 
         // Check if the user has the 'admin' role
-        const isUser = user && user.customClaims && user.customClaims.role === 'user';
-<<<<<<< HEAD
+        const isUser =
+          user && user.customClaims && user.customClaims.role === "user";
+
         setIsUser(isUser);
-=======
-        // Now, you can use the 'isAdmin' variable to determine whether the user is an admin or not.
->>>>>>> parent of ab4ff20 (fixing role dengan useState)
 
         getInventory();
       } else {
@@ -236,17 +232,43 @@ const InventoryList = () => {
   }
 
   return (
-    <div className="container" style={{ margin: "0", padding: "0", width: "100vw", height: "100vh", overflow: "hidden" }}>
-      <button onClick={handleLogout} className="button is-danger" style={{ float: "right", margin: "2%" }}>
+    <div
+      className="container"
+      style={{
+        margin: "0",
+        padding: "0",
+        width: "100vw",
+        height: "100vh",
+        overflow: "hidden",
+      }}
+    >
+      <button
+        onClick={handleLogout}
+        className="button is-danger"
+        style={{ float: "right", margin: "2%" }}
+      >
         Logout
       </button>
-      {user.customClaims.role === 'admin' && (
-        <Link to="add" className="button is-success" style={{ marginTop: "2%" }}>
+      {user.customClaims.role === "admin" && (
+        <Link
+          to="add"
+          className="button is-success"
+          style={{ marginTop: "2%" }}
+        >
           Add New
         </Link>
       )}
 
-      <div style={{ border: "1px solid black", borderRadius: "10px", paddingLeft: "10px", width: "300px", marginTop: "20px", boxShadow: "0 2px 4px rgba(1, 0, 0, 0.4)" }}>
+      <div
+        style={{
+          border: "1px solid black",
+          borderRadius: "10px",
+          paddingLeft: "10px",
+          width: "300px",
+          marginTop: "20px",
+          boxShadow: "0 2px 4px rgba(1, 0, 0, 0.4)",
+        }}
+      >
         <InputGroup className="my-3" style={{ flexDirection: "row" }}>
           {/* Search icon inside the InputGroup */}
           <InputGroup.Text>
@@ -260,15 +282,41 @@ const InventoryList = () => {
         </InputGroup>
       </div>
 
-      {user.customClaims.role === 'admin' && (
-        <button onClick={handleExportData} className="button is-primary" style={{ marginTop: "2%" }}>
+      {user.customClaims.role === "admin" && (
+        <button
+          onClick={handleExportData}
+          className="button is-primary"
+          style={{ marginTop: "2%" }}
+        >
           Export Data
         </button>
       )}
 
-<div className="table-container" style={{ overflowX: "auto", width: "100%", margin: "0", maxHeight: "calc(100vh - 200px)", overflowY: "auto" }}>
-        <div style={{ maxWidth: "1000px", "@media (max-width: 768px)": { maxWidth: "500px" } }}>
-          <table className="table is-striped is-narrow mt-2" style={{ tableLayout: "auto", fontSize: "0.8em", width: "100%", overflowX: "hidden" }}>
+      <div
+        className="table-container"
+        style={{
+          overflowX: "auto",
+          width: "100%",
+          margin: "0",
+          maxHeight: "calc(100vh - 200px)",
+          overflowY: "auto",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1000px",
+            "@media (max-width: 768px)": { maxWidth: "500px" },
+          }}
+        >
+          <table
+            className="table is-striped is-narrow mt-2"
+            style={{
+              tableLayout: "auto",
+              fontSize: "0.8em",
+              width: "100%",
+              overflowX: "hidden",
+            }}
+          >
             <colgroup>
               {/* Set specific column widths to adjust layout */}
               <col style={{ width: "5%" }} />
@@ -300,7 +348,7 @@ const InventoryList = () => {
                 <th>Headset</th>
                 <th>Keterangan</th>
                 {/* Use 'user.customClaims.role' to determine if the user is an admin or not */}
-                {!user.customClaims.role === 'user' && <th>Actions</th>}
+                {!user.customClaims.role === "user" && <th>Actions</th>}
               </tr>
             </thead>
             <tbody>
@@ -315,9 +363,13 @@ const InventoryList = () => {
                       inventory.noAsset.toLowerCase().includes(searchQuery) ||
                       inventory.merk.toLowerCase().includes(searchQuery) ||
                       inventory.type.toLowerCase().includes(searchQuery) ||
-                      inventory.serialNumber.toLowerCase().includes(searchQuery) ||
+                      inventory.serialNumber
+                        .toLowerCase()
+                        .includes(searchQuery) ||
                       inventory.pengguna.toLowerCase().includes(searchQuery) ||
-                      inventory.lokasiTerbaru.toLowerCase().includes(searchQuery) ||
+                      inventory.lokasiTerbaru
+                        .toLowerCase()
+                        .includes(searchQuery) ||
                       inventory.kondisi.toLowerCase().includes(searchQuery) ||
                       inventory.mouse.toLowerCase().includes(searchQuery) ||
                       inventory.mousepad.toLowerCase().includes(searchQuery) ||
@@ -332,10 +384,20 @@ const InventoryList = () => {
                     <td>{inventory.noAsset}</td>
                     {/* ... (existing code) */}
                     {/* Use 'user.customClaims.role' to determine if the user is an admin or not */}
-                    {!user.customClaims.role === 'user' && (
+                    {!user.customClaims.role === "user" && (
                       <td>
-                        <Link to={`edit/${inventory._id}`} className="button is-info is-small">Edit</Link>
-                        <button onClick={() => deleteInventory(inventory._id)} className="button is-danger is-small">Delete</button>
+                        <Link
+                          to={`edit/${inventory._id}`}
+                          className="button is-info is-small"
+                        >
+                          Edit
+                        </Link>
+                        <button
+                          onClick={() => deleteInventory(inventory._id)}
+                          className="button is-danger is-small"
+                        >
+                          Delete
+                        </button>
                       </td>
                     )}
                   </tr>

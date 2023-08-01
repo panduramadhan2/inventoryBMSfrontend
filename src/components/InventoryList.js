@@ -27,7 +27,10 @@ const InventoryList = () => {
   const [error, setError] = useState(null); // Add this line
 
   const [user, setUser] = useState(null); // Track the authenticated user
+<<<<<<< HEAD
   const [isUser, setIsUser] = useState(false); // Uncomment this line
+=======
+>>>>>>> parent of ab4ff20 (fixing role dengan useState)
 
   useEffect(() => {
     // Initialize Firebase (Make sure to replace 'firebaseConfig' with your actual config object)
@@ -43,7 +46,11 @@ const InventoryList = () => {
 
         // Check if the user has the 'admin' role
         const isUser = user && user.customClaims && user.customClaims.role === 'user';
+<<<<<<< HEAD
         setIsUser(isUser);
+=======
+        // Now, you can use the 'isAdmin' variable to determine whether the user is an admin or not.
+>>>>>>> parent of ab4ff20 (fixing role dengan useState)
 
         getInventory();
       } else {
@@ -259,11 +266,24 @@ const InventoryList = () => {
         </button>
       )}
 
-      <div className="table-container" style={{ overflowX: "auto", width: "100%", margin: "0", maxHeight: "calc(100vh - 200px)", overflowY: "auto" }}>
+<div className="table-container" style={{ overflowX: "auto", width: "100%", margin: "0", maxHeight: "calc(100vh - 200px)", overflowY: "auto" }}>
         <div style={{ maxWidth: "1000px", "@media (max-width: 768px)": { maxWidth: "500px" } }}>
           <table className="table is-striped is-narrow mt-2" style={{ tableLayout: "auto", fontSize: "0.8em", width: "100%", overflowX: "hidden" }}>
             <colgroup>
-              {/* ... Existing column widths ... */}
+              {/* Set specific column widths to adjust layout */}
+              <col style={{ width: "5%" }} />
+              <col style={{ width: "10%" }} />
+              <col style={{ width: "10%" }} />
+              <col style={{ width: "10%" }} />
+              <col style={{ width: "10%" }} />
+              <col style={{ width: "10%" }} />
+              <col style={{ width: "10%" }} />
+              <col style={{ width: "10%" }} />
+              <col style={{ width: "5%" }} />
+              <col style={{ width: "5%" }} />
+              <col style={{ width: "5%" }} />
+              <col style={{ width: "10%" }} />
+              <col style={{ width: "15%" }} />
             </colgroup>
             <thead>
               <tr>
@@ -279,7 +299,8 @@ const InventoryList = () => {
                 <th>Mousepad</th>
                 <th>Headset</th>
                 <th>Keterangan</th>
-                {!isUser && <th>Actions</th>}
+                {/* Use 'user.customClaims.role' to determine if the user is an admin or not */}
+                {!user.customClaims.role === 'user' && <th>Actions</th>}
               </tr>
             </thead>
             <tbody>
@@ -309,17 +330,9 @@ const InventoryList = () => {
                   <tr key={inventory._id}>
                     <td>{index + 1}</td>
                     <td>{inventory.noAsset}</td>
-                    <td>{inventory.merk}</td>
-                    <td>{inventory.type}</td>
-                    <td>{inventory.serialNumber}</td>
-                    <td>{inventory.pengguna}</td>
-                    <td>{inventory.lokasiTerbaru}</td>
-                    <td>{inventory.kondisi}</td>
-                    <td>{inventory.mouse}</td>
-                    <td>{inventory.mousepad}</td>
-                    <td>{inventory.headset}</td>
-                    <td>{inventory.keterangan}</td>
-                    {!isUser && (
+                    {/* ... (existing code) */}
+                    {/* Use 'user.customClaims.role' to determine if the user is an admin or not */}
+                    {!user.customClaims.role === 'user' && (
                       <td>
                         <Link to={`edit/${inventory._id}`} className="button is-info is-small">Edit</Link>
                         <button onClick={() => deleteInventory(inventory._id)} className="button is-danger is-small">Delete</button>

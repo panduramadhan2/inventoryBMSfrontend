@@ -249,7 +249,7 @@ const InventoryList = () => {
       >
         Logout
       </button>
-      {user?.customClaims?.role === "admin" && (
+      {user && user.customClaims && user.customClaims.role === "admin" && (
         <Link
           to="add"
           className="button is-success"
@@ -282,7 +282,7 @@ const InventoryList = () => {
         </InputGroup>
       </div>
 
-      {user?.customClaims?.role === "admin" && (
+      {user && user.customClaims && user.customClaims.role === "admin" && (
         <button
           onClick={handleExportData}
           className="button is-primary"

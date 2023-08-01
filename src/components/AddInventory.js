@@ -123,25 +123,48 @@ const AddInventory = () => {
     }
 
     randomString += symbols.charAt(Math.floor(Math.random() * symbols.length));
+
     for (let i = 0; i < 10; i++) {
-      // Add random number
-      randomString += numbers.charAt(
+      // Add random uppercase, lowercase letter, or number
+      const randomChar = characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+      const randomNum = numbers.charAt(
         Math.floor(Math.random() * numbers.length)
       );
+
+      // Randomly choose whether to add a character or a number
+      randomString += Math.random() < 0.5 ? randomChar : randomNum;
     }
+
     randomString += symbols.charAt(Math.floor(Math.random() * symbols.length));
+
     for (let i = 0; i < 12; i++) {
-      // Add random number
-      randomString += numbers.charAt(
+      // Add random uppercase, lowercase letter, or number
+      const randomChar = characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+      const randomNum = numbers.charAt(
         Math.floor(Math.random() * numbers.length)
       );
+
+      // Randomly choose whether to add a character or a number
+      randomString += Math.random() < 0.5 ? randomChar : randomNum;
     }
+
     randomString += symbols.charAt(Math.floor(Math.random() * symbols.length));
+
     for (let i = 0; i < 3; i++) {
-      // Add random number
-      randomString += numbers.charAt(
+      // Add random uppercase, lowercase letter, or number
+      const randomChar = characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+      const randomNum = numbers.charAt(
         Math.floor(Math.random() * numbers.length)
       );
+
+      // Randomly choose whether to add a character or a number
+      randomString += Math.random() < 0.5 ? randomChar : randomNum;
     }
 
     return randomString;

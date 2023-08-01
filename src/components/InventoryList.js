@@ -322,7 +322,7 @@ const InventoryList = () => {
           <table
             className="table is-striped is-narrow mt-2"
             style={{
-              tableLayout: "auto",
+              tableLayout: "fixed",
               fontSize: "0.8em",
               width: "100%",
               overflowX: "hidden",

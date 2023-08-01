@@ -247,8 +247,8 @@ const InventoryList = () => {
         padding: "0",
         width: "100vw",
         height: "100vh",
-        minHeight: "100vh", // Set a minimum height to fill the available vertical space
-        overflow: "hidden",
+        // minHeight: "100vh", // Set a minimum height to fill the available vertical space
+        // overflow: "hidden",
       }}
     >
       <button

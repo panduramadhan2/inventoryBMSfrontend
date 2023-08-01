@@ -393,7 +393,7 @@ const InventoryList = () => {
                     <td>{inventory.mousepad}</td>
                     <td>{inventory.headset}</td>
                     <td>{inventory.keterangan}</td>
-                    {user.customClaims.role !== "user" && (
+                    {user?.customClaims?.role !== "user" && (
                       <td>
                         <Link
                           to={`edit/${inventory._id}`}
